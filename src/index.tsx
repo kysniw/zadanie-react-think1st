@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { I18nProvider } from "react-aria-components";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <I18nProvider locale="en-US">
+      <App />
+    </I18nProvider>
   </React.StrictMode>
 );
