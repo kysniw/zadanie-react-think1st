@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <I18nProvider locale="en-US">
+    <I18nProvider locale="en-PL">
       <App />
     </I18nProvider>
   </React.StrictMode>
