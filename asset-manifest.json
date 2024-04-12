@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/zadanie-react-think1st/static/css/main.68309ea5.css",
-    "main.js": "/zadanie-react-think1st/static/js/main.8e94dc0e.js",
+    "main.js": "/zadanie-react-think1st/static/js/main.ecdccf82.js",
     "index.html": "/zadanie-react-think1st/index.html",
     "main.68309ea5.css.map": "/zadanie-react-think1st/static/css/main.68309ea5.css.map",
-    "main.8e94dc0e.js.map": "/zadanie-react-think1st/static/js/main.8e94dc0e.js.map"
+    "main.ecdccf82.js.map": "/zadanie-react-think1st/static/js/main.ecdccf82.js.map"
   },
   "entrypoints": [
     "static/css/main.68309ea5.css",
-    "static/js/main.8e94dc0e.js"
+    "static/js/main.ecdccf82.js"
   ]
 }
