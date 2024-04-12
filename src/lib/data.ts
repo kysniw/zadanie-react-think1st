@@ -20,23 +20,39 @@ export const getDates = async () => {
 
 export const tags = [
   {
-    key: 1,
+    isObservance: true,
+    value: "11:00",
+  },
+  {
+    isObservance: false,
     value: "12:00",
   },
   {
-    key: 2,
+    isObservance: true,
+    value: "13:30",
+  },
+  {
+    isObservance: false,
     value: "14:00",
   },
   {
-    key: 3,
+    isObservance: false,
     value: "16:30",
   },
   {
-    key: 4,
+    isObservance: true,
+    value: "17:30",
+  },
+  {
+    isObservance: false,
     value: "18:30",
   },
   {
-    key: 5,
+    isObservance: true,
+    value: "19:00",
+  },
+  {
+    isObservance: false,
     value: "20:00",
   },
 ];

@@ -11,8 +11,8 @@ import { FieldName } from "../lib/types";
 
 type FileInputProps = {
   name: FieldName;
-  value: File | undefined;
-  onValueChange: (value: File | undefined, name: FieldName) => void;
+  value: File | null;
+  onValueChange: (value: File | null, name: FieldName) => void;
 };
 
 const FileInput = ({ name, value, onValueChange }: FileInputProps) => {
@@ -41,7 +41,7 @@ const FileInput = ({ name, value, onValueChange }: FileInputProps) => {
         )}
         {value && (
           <Button
-            onPress={() => onValueChange(undefined, name)}
+            onPress={() => onValueChange(null, name)}
             className="hover:text-red-600 duration-200 mx-2 outline-none"
           >
             <FaCircleXmark />

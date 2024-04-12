@@ -5,27 +5,36 @@ import { FieldName } from "../lib/types";
 
 type TimeSelectProps = {
   name: FieldName;
-  value: string | undefined;
-  onValueChange: (value: string, name: FieldName) => void;
+  value: string | null;
+  onValueChange: (value: string | null, name: FieldName) => void;
+  isObservance: boolean;
 };
 
-const TimeSelect = ({ name, value, onValueChange }: TimeSelectProps) => {
+const TimeSelect = ({
+  name,
+  value,
+  onValueChange,
+  isObservance,
+}: TimeSelectProps) => {
   return (
     <TagGroup
-      className="basis-full"
+      className="basis-auto"
       selectionMode="single"
       selectedKeys={[value!]}
       onSelectionChange={(keys) => {
         // console.log(Array.from(keys)[0]);
-        onValueChange(Array.from(keys)[0].toString(), name);
+        onValueChange(Array.from(keys)[0]?.toString() || null, name);
       }}
     >
       <Label>Time</Label>
-      <TagList items={tags} className="flex sm:flex-col gap-2">
+      <TagList
+        items={tags.filter((tag) => tag.isObservance === isObservance)}
+        className="flex flex-wrap sm:flex-col sm:flex-nowrap gap-2"
+      >
         {(tag) => (
           <Tag
             id={tag.value}
-            className="bg-white text-center w-full border border-[#353139] outline-none rounded-lg p-2 cursor-pointer
+            className="bg-white text-center border border-[#CBB6E5] outline-none rounded-lg py-3 px-4 cursor-pointer
          data-[selected]:outline-2 data-[selected]:outline-[#761BE4] -outline-offset-2"
           >
             {tag.value}

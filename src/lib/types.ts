@@ -16,13 +16,13 @@ export type HolidaysResponse = {
 };
 
 export interface FormState {
-  firstName: string | undefined;
-  lastName: string | undefined;
-  email: string | undefined;
-  age: number | undefined;
-  photo: File | undefined;
-  date: DateValue | undefined;
-  time: string | undefined;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
+  photo: File | null;
+  date: DateValue | null;
+  time: string | null;
 }
 
 export type FieldName =
@@ -33,3 +33,8 @@ export type FieldName =
   | "photo"
   | "date"
   | "time";
+
+export type ResponseProps = {
+  message?: string;
+  error?: string;
+};

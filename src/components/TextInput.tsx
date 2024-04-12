@@ -1,12 +1,13 @@
 import React from "react";
 import { FieldError, Input, Label, TextField } from "react-aria-components";
 import { FieldName } from "../lib/types";
+import { FaCircleExclamation } from "react-icons/fa6";
 
 type InputProps = {
   type?: string;
   name: FieldName;
   label: string;
-  value: string | undefined;
+  value: string;
   onValueChange: (value: string, name: FieldName) => void;
 };
 
@@ -33,9 +34,18 @@ const TextInput = ({
        font-medium text-base data-[invalid]:bg-[#FEECEC] data-[invalid]:outline-2 data-[invalid]:outline-[#ED4545]"
       />
       <FieldError>
-        {({ validationDetails }) =>
-          validationDetails.valueMissing ? `${label} is required` : ""
-        }
+        {({ validationDetails }) => (
+          <div className="flex items-center my-1">
+            <FaCircleExclamation className="block text-red-600 mr-2" />
+            <p className=" font-normal text-sm">
+              {validationDetails.valueMissing
+                ? `${label} is required`
+                : validationDetails.typeMismatch
+                ? `Write ${label} correct`
+                : ""}
+            </p>
+          </div>
+        )}
       </FieldError>
     </TextField>
   );

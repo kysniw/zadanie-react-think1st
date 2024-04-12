@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Button,
   Calendar,
@@ -10,35 +10,26 @@ import {
   DateValue,
   Heading,
   Label,
-  Tag,
-  TagGroup,
-  TagList,
   Text,
 } from "react-aria-components";
 import { CalendarDate } from "@internationalized/date";
-import { getDates, tags } from "../lib/data";
 import { FieldName, HolidaysResponse } from "../lib/types";
 import { isNationalHoliday, parseToCalendarDate } from "../utils/common";
-import { FaPlay } from "react-icons/fa6";
+import { FaCircleExclamation, FaPlay } from "react-icons/fa6";
 
 type DateInputProps = {
   name: FieldName;
-  value: DateValue | undefined;
+  value: DateValue | null;
+  holidays: HolidaysResponse | undefined;
   onValueChange: (value: DateValue, name: FieldName) => void;
 };
 
-const DateInput = ({ name, value: date, onValueChange }: DateInputProps) => {
-  const [holidays, setHolidays] = useState<HolidaysResponse>();
-
-  useEffect(() => {
-    const getData = async () => {
-      const holidaysData = (await getDates()) as HolidaysResponse;
-      setHolidays(holidaysData);
-    };
-
-    getData();
-  }, []);
-
+const DateInput = ({
+  name,
+  value: date,
+  holidays,
+  onValueChange,
+}: DateInputProps) => {
   const observanceHolidayMessage =
     holidays?.data?.find(
       (holiday) =>
@@ -55,9 +46,11 @@ const DateInput = ({ name, value: date, onValueChange }: DateInputProps) => {
       minValue={new CalendarDate(2023, 1, 1)}
       maxValue={new CalendarDate(2023, 12, 31)}
       value={date}
-      onChange={(date) => onValueChange(date, name)}
+      onChange={(date) => {
+        onValueChange(date, name);
+      }}
       isDateUnavailable={isDateUnavailable}
-      className="basis-fit"
+      className="w-auto"
     >
       <Label>Date</Label>
       <div className="bg-white border border-[#CBB6E5] rounded-lg p-4">
@@ -76,7 +69,10 @@ const DateInput = ({ name, value: date, onValueChange }: DateInputProps) => {
             <FaPlay />
           </Button>
         </header>
-        <CalendarGrid className="text-center" weekdayStyle="short">
+        <CalendarGrid
+          className="text-center overflow-x-auto"
+          weekdayStyle="short"
+        >
           <CalendarGridHeader>
             {(day) => (
               <CalendarHeaderCell className="w-10 h-9 font-medium text-sm">
@@ -96,7 +92,12 @@ const DateInput = ({ name, value: date, onValueChange }: DateInputProps) => {
         </CalendarGrid>
       </div>
       {observanceHolidayMessage && (
-        <Text slot="errorMessage">It is {observanceHolidayMessage}</Text>
+        <Text className="flex items-center py-1" slot="errorMessage">
+          <FaCircleExclamation className="block mr-2 text-[#CBB6E5]" />
+          <p className="font-normal text-sm">
+            It is {observanceHolidayMessage}
+          </p>
+        </Text>
       )}
     </Calendar>
   );

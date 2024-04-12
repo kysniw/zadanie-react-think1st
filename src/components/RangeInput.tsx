@@ -10,7 +10,7 @@ import { FieldName } from "../lib/types";
 
 type RangeInputProps = {
   name: FieldName;
-  value: number | undefined;
+  value: number;
   onValueChange: (value: number, name: FieldName) => void;
 };
 

@@ -26,3 +26,20 @@ export const isNationalHoliday = (
 
   return false;
 };
+
+export const isObservanceDay = (
+  date: DateValue,
+  holidays: HolidaysResponse | undefined
+) => {
+  if (holidays?.data) {
+    const matchDate = holidays.data.find(
+      (holiday) =>
+        holiday.type === "OBSERVANCE" &&
+        date.compare(parseToCalendarDate(new Date(holiday.date))) === 0
+    );
+
+    return !!matchDate;
+  }
+
+  return false;
+};
