@@ -69,27 +69,26 @@ const DateInput = ({
             <FaPlay />
           </Button>
         </header>
-        <CalendarGrid
-          className="text-center overflow-x-auto"
-          weekdayStyle="short"
-        >
-          <CalendarGridHeader>
-            {(day) => (
-              <CalendarHeaderCell className="w-10 h-9 font-medium text-sm">
-                {day.slice(0, -1)}
-              </CalendarHeaderCell>
-            )}
-          </CalendarGridHeader>
-          <CalendarGridBody>
-            {(date) => (
-              <CalendarCell
-                date={date}
-                className="data-[outside-month]:hidden rounded-full m-1 w-8 leading-8 data-[unavailable]:text-gray-300
-                  outline-none data-[selected]:bg-[#761BE4] data-[selected]:text-white"
-              />
-            )}
-          </CalendarGridBody>
-        </CalendarGrid>
+        <div className="w-full overflow-x-auto">
+          <CalendarGrid className="text-center" weekdayStyle="short">
+            <CalendarGridHeader>
+              {(day) => (
+                <CalendarHeaderCell className="w-10 h-9 font-medium text-sm">
+                  {day.slice(0, -1)}
+                </CalendarHeaderCell>
+              )}
+            </CalendarGridHeader>
+            <CalendarGridBody>
+              {(date) => (
+                <CalendarCell
+                  date={date}
+                  className="data-[outside-month]:hidden rounded-full m-1 w-8 leading-8 data-[unavailable]:text-gray-300
+              outline-none data-[selected]:bg-[#761BE4] data-[selected]:text-white"
+                />
+              )}
+            </CalendarGridBody>
+          </CalendarGrid>
+        </div>
       </div>
       {observanceHolidayMessage && (
         <Text className="flex items-center py-1" slot="errorMessage">
